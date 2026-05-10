@@ -13,6 +13,17 @@
   --dim: #555555;
 }
 
+/* LIGHT MODE */
+.light {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --card: #f5f5f5;
+  --border: #e5e5e5;
+  --accent: #c0392b;
+}
+
+
 * { box-sizing: border-box; }
 /* html { scroll-behavior: smooth; } */
 
@@ -104,11 +115,11 @@ body {
 @media (max-width: 768px) {
 
   .hero-layout {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .hero-left {
-    padding: 120px 24px 48px;
+    padding: 15px 24px 48px;
     align-items: flex-start;
   }
 

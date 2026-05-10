@@ -4,46 +4,91 @@ import { certifications } from '@/data/certifications';
 
 export default function CertificationsPage() {
   return (
-    <div style={{ background: '#0d0d0d', fontFamily: 'Segoe UI, sans-serif', minHeight: '100vh' }}>
-      <div className=" px-8 py-14">
-        <SectionHeader title="Certifications & Trainings" subtitle="Professional certifications and specialized training programs I've completed." />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
 
-        {/* 2-col grid exactly like screenshot */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', maxWidth: '860px', margin: '0 auto' }}
-          className="!grid-cols-1 md:!grid-cols-2"
-        >
+      <div className="px-6 md:px-8 py-14">
+
+        <SectionHeader
+          title="Certifications & Trainings"
+          subtitle="Professional certifications and specialized training programs I've completed."
+        />
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[860px] mx-auto">
+
           {certifications.map((cert) => (
-            <div key={cert.id}
-              style={{ background: '#161616', border: '1px solid #222', borderRadius: '10px', padding: '22px 24px', display: 'flex', gap: '16px', alignItems: 'flex-start', transition: 'border-color 0.2s' }}
-              className="hover:!border-[#333]"
+
+            <div
+              key={cert.id}
+              className="
+                flex gap-4 items-start
+                p-5
+                rounded-xl
+                bg-[var(--card)]
+                border border-[var(--border)]
+                transition-all duration-200
+                hover:border-[#444]
+              "
             >
-              {/* Red award icon */}
-              <div style={{ flexShrink: 0, marginTop: '2px' }}>
-                <Award size={19} style={{ color: '#c0392b' }} />
+
+              {/* ICON */}
+              <div className="mt-0.5 flex-shrink-0">
+                <Award size={18} className="text-[#c0392b]" />
               </div>
 
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-                  <h3 style={{ fontFamily: 'Segoe UI', fontSize: '14px', fontWeight: 600, color: '#e8e8e8', lineHeight: 1.4, marginBottom: '4px' }}>
+              {/* CONTENT */}
+              <div className="flex-1">
+
+                {/* TITLE + LINK */}
+                <div className="flex items-start justify-between gap-3">
+
+                  <h3 className="text-sm font-semibold leading-snug text-[var(--text)]">
                     {cert.title}
                   </h3>
+
                   {cert.url && (
-                    <a href={cert.url} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, color: '#555' }} className="hover:!text-[#ccc]">
-                      <ExternalLink size={13} />
+                    <a
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--muted)] hover:text-[#c0392b] transition-colors"
+                    >
+                      <ExternalLink size={14} />
                     </a>
                   )}
+
                 </div>
-                <p style={{ fontFamily: 'Segoe UI, sans-serif', fontSize: '13px', color: '#777', marginBottom: '10px' }}>
+
+                {/* ORGANIZATION */}
+                <p className="text-sm text-[var(--muted)] mt-1 mb-3">
                   {cert.organization}
                 </p>
-                <span style={{ display: 'inline-block', background: '#1e1e1e', border: '1px solid #2a2a2a', borderRadius: '4px', padding: '2px 10px', fontSize: '11px', fontFamily: 'Segoe UI, sans-serif', color: '#999' }}>
+
+                {/* DATE BADGE */}
+                <span
+                  className="
+                    inline-block
+                    text-[11px]
+                    px-2.5 py-1
+                    rounded-md
+                    border border-[var(--border)]
+                    bg-[var(--bg2)]
+                    text-[var(--muted)]
+                  "
+                >
                   {cert.date}
                 </span>
+
               </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </div>
   );
 }

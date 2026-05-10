@@ -1,3 +1,5 @@
+'use client';
+
 import { GitFork, Link as LinkIcon, AtSign, BookOpen, Camera, Mail, Globe } from 'lucide-react';
 
 export default function Footer() {
@@ -12,23 +14,53 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ borderTop: '1px solid #1a1a1a', background: '#0d0d0d' }}>
+    <footer
+      style={{
+        background: 'var(--bg)',
+        borderTop: '1px solid var(--border)',
+      }}
+    >
       <div className="max-w-6xl mx-auto px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#555' }}>
+
+        <p
+          style={{
+            fontFamily: 'DM Sans, sans-serif',
+            fontSize: '13px',
+            color: 'var(--muted)',
+          }}
+        >
           © {new Date().getFullYear()} Olaomo Favour. All rights reserved.
         </p>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
           {icons.map((item) => (
-            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+            <a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={item.label}
-              style={{ color: '#555', transition: 'color 0.2s' }}
-              className="hover:!text-[#e8e8e8]"
+              className="footer-icon"
+              style={{ color: 'var(--muted)' }}
             >
               {item.icon}
             </a>
           ))}
         </div>
       </div>
+
+      {/* No styled-jsx needed anymore */}
+      <style>{`
+        .footer-icon {
+          display: inline-flex;
+          transition: all 0.25s ease;
+        }
+
+        .footer-icon:hover {
+          color: var(--primary);
+          transform: translateY(-2px) scale(1.08);
+        }
+      `}</style>
     </footer>
   );
 }

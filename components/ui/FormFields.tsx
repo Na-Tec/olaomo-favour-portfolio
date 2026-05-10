@@ -2,13 +2,13 @@
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: '#2b2623',
-  border: '1px solid #243040',
+  background: 'var(--card)',
+  border: '1px solid var(--border)',
   borderRadius: '8px',
   padding: '12px 14px',
   fontSize: '14px',
   fontFamily: 'Segoe UI, sans-serif',
-  color: '#e2e8f0',
+  color: 'var(--text)',
   outline: 'none',
   boxSizing: 'border-box',
 };
@@ -17,7 +17,7 @@ const labelStyle: React.CSSProperties = {
   display: 'block',
   fontSize: '13px',
   fontWeight: 500,
-  color: '#94a3b8',
+  color: 'var(--muted)',
   marginBottom: '6px',
   fontFamily: 'Segoe UI, sans-serif',
 };
@@ -46,7 +46,15 @@ export function FormTextarea({ label, ...props }: TextareaProps) {
   return (
     <div style={{ marginBottom: '12px' }}>
       {label && <label style={labelStyle}>{label}</label>}
-      <textarea {...props} rows={4} style={{ ...inputStyle, resize: 'vertical', ...props.style }} />
+      <textarea
+        {...props}
+        rows={4}
+        style={{
+          ...inputStyle,
+          resize: 'vertical',
+          ...props.style,
+        }}
+      />
     </div>
   );
 }
@@ -55,18 +63,44 @@ export function FormSelect({ label, options, ...props }: SelectProps) {
   return (
     <div style={{ marginBottom: '12px' }}>
       {label && <label style={labelStyle}>{label}</label>}
+
       <div style={{ position: 'relative' }}>
-        <select {...props}
-          style={{ ...inputStyle, appearance: 'none', cursor: 'pointer', paddingRight: '36px', ...props.style }}
+        <select
+          {...props}
+          style={{
+            ...inputStyle,
+            appearance: 'none',
+            cursor: 'pointer',
+            paddingRight: '36px',
+            ...props.style,
+          }}
         >
           {options.map((opt) => (
-            <option key={opt.value} value={opt.value} style={{ background: '#1a2332' }}>
+            <option
+              key={opt.value}
+              value={opt.value}
+              style={{
+                background: 'var(--card)',
+                color: 'var(--text)',
+              }}
+            >
               {opt.label}
             </option>
           ))}
         </select>
+
         {/* Chevron */}
-        <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748b', fontSize: '12px' }}>
+        <span
+          style={{
+            position: 'absolute',
+            right: '12px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none',
+            color: 'var(--muted)',
+            fontSize: '12px',
+          }}
+        >
           ▾
         </span>
       </div>
@@ -80,8 +114,8 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
       type="submit"
       style={{
         width: '100%',
-        background: '#c0392b',
-        color: '#ffffff',
+        background: 'var(--primary)',
+        color: 'var(--text-inverse)',
         border: 'none',
         borderRadius: '8px',
         padding: '13px',
@@ -94,9 +128,9 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
         justifyContent: 'center',
         gap: '8px',
         marginTop: '8px',
-        transition: 'opacity 0.2s',
+        transition: 'all 0.2s ease',
       }}
-      className="hover:!opacity-85"
+      className="hover:opacity-85"
     >
       {children}
     </button>

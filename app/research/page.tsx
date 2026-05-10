@@ -4,52 +4,89 @@ import { publications } from '@/data/research';
 
 export default function ResearchPage() {
   return (
-    <div style={{ background: '#0d0d0d', minHeight: '100vh' }}>
-      <div className="max-w-5xl mx-auto px-8 py-24">
-        <SectionHeader title="Research & Publications" subtitle="Peer-reviewed publications in top-tier AI/ML venues." />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
 
-        {/* Publication cards — full width, centered, max 820px */}
-        <div style={{ maxWidth: '820px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div className="max-w-5xl mx-auto px-6 md:px-8 py-24">
+
+        <SectionHeader
+          title="Research & Publications"
+          subtitle="Peer-reviewed publications in top-tier AI/ML venues."
+        />
+
+        {/* PUBLICATIONS LIST */}
+        <div className="max-w-[820px] mx-auto flex flex-col gap-4">
+
           {publications.map((pub) => (
-            <div key={pub.id}
-              style={{ background: '#161616', border: '1px solid #222', borderRadius: '10px', padding: '26px 28px', display: 'flex', gap: '18px', alignItems: 'flex-start', transition: 'border-color 0.2s' }}
-              className="hover:!border-[#333]"
+
+            <div
+              key={pub.id}
+              className="
+                flex gap-4 items-start
+                p-6
+                rounded-xl
+                bg-[var(--card)]
+                border border-[var(--border)]
+                transition-all duration-200
+                hover:border-[#444]
+              "
             >
-              {/* Red file icon */}
-              <div style={{ flexShrink: 0, marginTop: '2px' }}>
-                <FileText size={20} style={{ color: '#c0392b' }} />
+
+              {/* ICON */}
+              <div className="flex-shrink-0 mt-0.5">
+                <FileText size={20} className="text-[#c0392b]" />
               </div>
 
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '6px' }}>
-                  <h3 style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '15px', fontWeight: 700, color: '#e8e8e8', lineHeight: 1.45 }}>
+              {/* CONTENT */}
+              <div className="flex-1">
+
+                {/* TITLE + LINK */}
+                <div className="flex items-start justify-between gap-3 mb-1">
+
+                  <h3 className="text-[15px] font-semibold leading-snug text-[var(--text)]">
                     {pub.title}
                   </h3>
+
                   {pub.url && (
-                    <a href={pub.url} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, color: '#555' }} className="hover:!text-[#ccc]">
-                      <ExternalLink size={15} />
+                    <a
+                      href={pub.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--muted)] hover:text-[#c0392b] transition-colors"
+                    >
+                      <ExternalLink size={16} />
                     </a>
                   )}
+
                 </div>
 
-                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '13px', color: '#888', marginBottom: '8px' }}>
+                {/* AUTHORS */}
+                <p className="text-sm text-[var(--muted)] mb-2">
                   {pub.authors}
                 </p>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-                  {/* Venue in red monospace — exactly like screenshot */}
-                  <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#c0392b' }}>
+                {/* VENUE + YEAR */}
+                <div className="flex items-center gap-3 flex-wrap">
+
+                  <span className="text-xs text-[#c0392b] font-medium">
                     {pub.venue}
                   </span>
-                  <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '12px', color: '#555' }}>
+
+                  <span className="text-xs text-[var(--muted)]">
                     {pub.year}
                   </span>
+
                 </div>
+
               </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </div>
   );
 }
