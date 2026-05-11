@@ -4,7 +4,7 @@ import { publications } from '@/data/research';
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
+    <div className="min-h-screen bg-(--bg)] text-(--text)] transition-colors duration-300">
 
       <div className="max-w-5xl mx-auto px-6 md:px-8 py-24">
 
@@ -24,10 +24,12 @@ export default function ResearchPage() {
                 flex gap-4 items-start
                 p-6
                 rounded-xl
-                bg-[var(--card)]
-                border border-[var(--border)]
+                bg-(--card)]
+                border border-(--border)]
                 transition-all duration-200
-                hover:border-[#444]
+                hover:border-[#e74c3c]
+                cursor: pointer
+                hover:border-var(--accent) hover:-translate-y-0.5
               "
             >
 
@@ -42,7 +44,7 @@ export default function ResearchPage() {
                 {/* TITLE + LINK */}
                 <div className="flex items-start justify-between gap-3 mb-1">
 
-                  <h3 className="text-[15px] font-semibold leading-snug text-[var(--text)]">
+                  <h3 className="text-[15px] font-semibold leading-snug text-(--text)]">
                     {pub.title}
                   </h3>
 
@@ -51,7 +53,7 @@ export default function ResearchPage() {
                       href={pub.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--muted)] hover:text-[#c0392b] transition-colors"
+                      className="text-var(--muted)] hover:text-[#c0392b] transition-colors"
                     >
                       <ExternalLink size={16} />
                     </a>
@@ -60,7 +62,7 @@ export default function ResearchPage() {
                 </div>
 
                 {/* AUTHORS */}
-                <p className="text-sm text-[var(--muted)] mb-2">
+                <p className="text-sm text-var(--muted)] mb-2">
                   {pub.authors}
                 </p>
 
@@ -71,7 +73,7 @@ export default function ResearchPage() {
                     {pub.venue}
                   </span>
 
-                  <span className="text-xs text-[var(--muted)]">
+                  <span className="text-xs text-var(--muted)]">
                     {pub.year}
                   </span>
 

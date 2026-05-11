@@ -11,7 +11,7 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
           fontFamily: 'Segoe UI, sans-serif',
           fontSize: 'clamp(32px, 5vw, 48px)',
           fontWeight: 800,
-          color: '#e8e8e8',
+          color: '#c0392b',
           marginBottom: subtitle ? '14px' : '20px',
           letterSpacing: '-0.5px',
           lineHeight: 1.1,
@@ -24,7 +24,7 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
           style={{
             fontFamily: 'DM Sans, sans-serif',
             fontSize: '15px',
-            color: '#888',
+            color: '#555555',
             maxWidth: '540px',
             margin: '0 auto 20px',
             lineHeight: 1.65,

@@ -34,20 +34,28 @@ export default function Navbar() {
       {/* DESKTOP NAVBAR */}
       <div className="navbar-desktop">
 
-        {navLinks.map((link) => {
-          const isActive = pathname === link.href;
-
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-
+        {/* LOGO */}
+        <Link href="/" className="desktop-logo">
+          O<span className="text-[var(--accent)]">.</span>F
+        </Link>
+        
+        {/* NAV LINKS */}
+        <div className="desktop-nav-links">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+          
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
+        
         {/* THEME TOGGLE */}
         <button
           aria-label="Toggle theme"
@@ -60,7 +68,7 @@ export default function Navbar() {
             <Moon size={18} />
           )}
         </button>
-
+        
       </div>
 
       {/* MOBILE NAVBAR */}

@@ -4,13 +4,14 @@ const inputStyle: React.CSSProperties = {
   width: '100%',
   background: 'var(--card)',
   border: '1px solid var(--border)',
-  borderRadius: '8px',
-  padding: '12px 14px',
+  borderRadius: '10px',
+  padding: '14px 16px',
   fontSize: '14px',
   fontFamily: 'Segoe UI, sans-serif',
   color: 'var(--text)',
   outline: 'none',
   boxSizing: 'border-box',
+  transition: 'all 0.2s ease',
 };
 
 const labelStyle: React.CSSProperties = {
@@ -18,40 +19,38 @@ const labelStyle: React.CSSProperties = {
   fontSize: '13px',
   fontWeight: 500,
   color: 'var(--muted)',
-  marginBottom: '6px',
+  marginBottom: '7px',
   fontFamily: 'Segoe UI, sans-serif',
 };
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+
+interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
 }
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+
+interface SelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options: { value: string; label: string }[];
 }
 
-export function FormInput({ label, ...props }: InputProps) {
+export function FormInput({
+  label,
+  ...props
+}: InputProps) {
   return (
-    <div style={{ marginBottom: '12px' }}>
+    <div style={{ marginBottom: '16px' }}>
       {label && <label style={labelStyle}>{label}</label>}
-      <input {...props} style={{ ...inputStyle, ...props.style }} />
-    </div>
-  );
-}
 
-export function FormTextarea({ label, ...props }: TextareaProps) {
-  return (
-    <div style={{ marginBottom: '12px' }}>
-      {label && <label style={labelStyle}>{label}</label>}
-      <textarea
+      <input
         {...props}
-        rows={4}
         style={{
           ...inputStyle,
-          resize: 'vertical',
           ...props.style,
         }}
       />
@@ -59,9 +58,36 @@ export function FormTextarea({ label, ...props }: TextareaProps) {
   );
 }
 
-export function FormSelect({ label, options, ...props }: SelectProps) {
+export function FormTextarea({
+  label,
+  ...props
+}: TextareaProps) {
   return (
-    <div style={{ marginBottom: '12px' }}>
+    <div style={{ marginBottom: '16px' }}>
+      {label && <label style={labelStyle}>{label}</label>}
+
+      <textarea
+        {...props}
+        rows={5}
+        style={{
+          ...inputStyle,
+          resize: 'vertical',
+          minHeight: '120px',
+          lineHeight: 1.7,
+          ...props.style,
+        }}
+      />
+    </div>
+  );
+}
+
+export function FormSelect({
+  label,
+  options,
+  ...props
+}: SelectProps) {
+  return (
+    <div style={{ marginBottom: '16px' }}>
       {label && <label style={labelStyle}>{label}</label>}
 
       <div style={{ position: 'relative' }}>
@@ -71,7 +97,7 @@ export function FormSelect({ label, options, ...props }: SelectProps) {
             ...inputStyle,
             appearance: 'none',
             cursor: 'pointer',
-            paddingRight: '36px',
+            paddingRight: '42px',
             ...props.style,
           }}
         >
@@ -93,7 +119,7 @@ export function FormSelect({ label, options, ...props }: SelectProps) {
         <span
           style={{
             position: 'absolute',
-            right: '12px',
+            right: '14px',
             top: '50%',
             transform: 'translateY(-50%)',
             pointerEvents: 'none',
@@ -108,17 +134,21 @@ export function FormSelect({ label, options, ...props }: SelectProps) {
   );
 }
 
-export function SubmitButton({ children }: { children: React.ReactNode }) {
+export function SubmitButton({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <button
       type="submit"
       style={{
         width: '100%',
-        background: 'var(--primary)',
+        background: '#c0392b',
         color: 'var(--text-inverse)',
         border: 'none',
-        borderRadius: '8px',
-        padding: '13px',
+        borderRadius: '10px',
+        padding: '15px',
         fontSize: '14px',
         fontWeight: 700,
         fontFamily: 'Segoe UI, sans-serif',
@@ -127,10 +157,10 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
         alignItems: 'center',
         justifyContent: 'center',
         gap: '8px',
-        marginTop: '8px',
+        marginTop: '10px',
         transition: 'all 0.2s ease',
       }}
-      className="hover:opacity-85"
+      className="hover:opacity-90"
     >
       {children}
     </button>

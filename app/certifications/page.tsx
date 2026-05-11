@@ -24,10 +24,12 @@ export default function CertificationsPage() {
                 flex gap-4 items-start
                 p-5
                 rounded-xl
-                bg-[var(--card)]
-                border border-[var(--border)]
+                bg-var(--card)
+                border border-var(--border)
                 transition-all duration-200
-                hover:border-[#444]
+                hover:border-[#e74c3c]
+                cursor: pointer
+                hover:border-var(--accent) hover:-translate-y-0.5
               "
             >
 
@@ -71,9 +73,9 @@ export default function CertificationsPage() {
                     text-[11px]
                     px-2.5 py-1
                     rounded-md
-                    border border-[var(--border)]
-                    bg-[var(--bg2)]
-                    text-[var(--muted)]
+                    border border-var(--border)
+                    bg-var(--bg2)
+                    text-var(--text)
                   "
                 >
                   {cert.date}

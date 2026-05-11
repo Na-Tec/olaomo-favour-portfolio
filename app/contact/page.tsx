@@ -339,19 +339,30 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* MODALS (UNCHANGED) */}
+{/* ── MODALS ── */}
+
       <Modal
         isOpen={activeModal === 'role'}
         onClose={() => setActiveModal(null)}
-        title="Discuss a Role"
+        title="Interested in having me on your team?"
+        description="I'm actively exploring roles in these areas, but I'm open to conversations about any opportunity where I can add value with data and AI:"
         icon={<Briefcase size={22} />}
+        bulletPoints={[
+          'Healthcare AI: Healthcare Data Analyst, Clinical AI Researcher, Medical Data Scientist',
+          'Analytics & Consulting: Business Intelligence Analyst, Data Consultant, Analytics Manager',
+          'Tech Community & Education: Developer Advocate, Community Lead, Technical Educator/Writer',
+        ]}
       >
         <form onSubmit={(e) => e.preventDefault()}>
           <FormInput placeholder="Your Name" />
-          <FormInput placeholder="Company" />
-          <FormInput placeholder="Email" />
-          <FormTextarea placeholder="Message..." />
-          <SubmitButton>Send</SubmitButton>
+          <FormInput placeholder="Company / Organization" />
+          <FormInput placeholder='Role Title (or "Exploring fit")' />
+          <FormInput placeholder="Email Address" type="email" />
+          <FormTextarea placeholder="Brief description of the role or opportunity" />
+          <SubmitButton>
+            <Send size={15} />
+            Send Details
+          </SubmitButton>
         </form>
       </Modal>
 
@@ -359,38 +370,106 @@ export default function ContactPage() {
         isOpen={activeModal === 'speak'}
         onClose={() => setActiveModal(null)}
         title="Invite Me to Speak"
+        description="I enjoy speaking on topics around AI, healthcare, community growth, and building a career in tech."
         icon={<Mic2 size={22} />}
+        bulletPoints={[
+          'Healthcare AI in Africa',
+          'Building a Data Career Early',
+          'Community-Led Tech Growth',
+          'AI for Social Good',
+        ]}
       >
         <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Name" />
-          <FormTextarea placeholder="Event details..." />
-          <SubmitButton>Send Invite</SubmitButton>
+          <FormInput placeholder="Your Name" />
+          <FormInput placeholder="Organization / Event Name" />
+          <FormInput placeholder="Email Address" type="email" />
+
+          <div className="mb-3">
+            <label className="block text-sm text-muted-foreground mb-2">Event Date &amp; Time</label>
+            <FormSelect
+              name="date"
+              options={[
+                { value: '', label: 'Have you set a date?' },
+                { value: 'yes', label: 'Yes, I have a date' },
+                { value: 'no', label: 'Not yet' },
+                { value: 'flexible', label: 'Flexible' },
+              ]}
+            />
+          </div>
+
+          <FormSelect
+            name="format"
+            options={[
+              { value: '', label: 'Select Format' },
+              { value: 'keynote', label: 'Keynote' },
+              { value: 'panel', label: 'Panel' },
+              { value: 'workshop', label: 'Workshop' },
+              { value: 'fireside', label: 'Fireside Chat' },
+              { value: 'other', label: 'Other' },
+            ]}
+          />
+
+          <div className="mb-3">
+            <label className="block text-sm text-muted-foreground mb-2">Event Type</label>
+            <FormSelect
+              name="eventType"
+              options={[
+                { value: '', label: 'Virtual or Physical?' },
+                { value: 'virtual', label: 'Virtual' },
+                { value: 'physical', label: 'Physical' },
+                { value: 'hybrid', label: 'Hybrid' },
+              ]}
+            />
+          </div>
+
+          <FormTextarea placeholder="Topic or theme in mind" />
+          <SubmitButton>
+            <Send size={15} />
+            Send Speaking Invitation
+          </SubmitButton>
         </form>
       </Modal>
 
       <Modal
         isOpen={activeModal === 'collaborate'}
         onClose={() => setActiveModal(null)}
-        title="Collaborate"
+        title="Let's Build Something"
+        description="I'm especially interested in Healthcare AI, Data for Good, research, and community-focused technology projects."
         icon={<Users size={22} />}
+        bulletPoints={[
+          'Research collaborations',
+          'AI & data-driven products',
+          'Community initiatives',
+          'Open-source contributions',
+        ]}
       >
         <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Project" />
-          <FormTextarea placeholder="Idea..." />
-          <SubmitButton>Send</SubmitButton>
+          <FormInput placeholder="Your Name" />
+          <FormInput placeholder="Project Name / Idea" />
+          <FormInput placeholder="Email Address" type="email" />
+          <FormTextarea placeholder="Tell me about your idea or project..." />
+          <SubmitButton>
+            <Send size={15} />
+            Send Collaboration Idea
+          </SubmitButton>
         </form>
       </Modal>
 
       <Modal
         isOpen={activeModal === 'hello'}
         onClose={() => setActiveModal(null)}
-        title="Say Hello"
+        title="Just Say Hello"
+        description="No pressure, no agenda — happy to connect, chat about tech, or simply say hi."
         icon={<MessageCircle size={22} />}
       >
         <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Name" />
-          <FormTextarea placeholder="Message..." />
-          <SubmitButton>Send</SubmitButton>
+          <FormInput placeholder="Your Name" />
+          <FormInput placeholder="Email Address" type="email" />
+          <FormTextarea placeholder="What's on your mind?" />
+          <SubmitButton>
+            <Send size={15} />
+            Say Hello
+          </SubmitButton>
         </form>
       </Modal>
     </div>

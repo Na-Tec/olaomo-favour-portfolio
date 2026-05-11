@@ -51,13 +51,14 @@ export default function Modal({
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'var(--overlay, rgba(0,0,0,0.7))',
-        backdropFilter: 'blur(10px)',
+        background: 'rgba(0,0,0,0.55)',
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
         zIndex: 200,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '20px',
+        padding: '24px',
       }}
     >
       {/* Modal Card */}
@@ -65,14 +66,16 @@ export default function Modal({
         style={{
           background: 'var(--card)',
           border: '1px solid var(--border)',
-          borderRadius: '16px',
-          padding: '36px',
+          borderRadius: '20px',
+          padding: '32px 32px 28px',
           width: '100%',
-          maxWidth: '520px',
+          maxWidth: '640px',
           maxHeight: '90vh',
           overflowY: 'auto',
+          scrollbarWidth: 'thin',
           position: 'relative',
           color: 'var(--text)',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.45)',
         }}
       >
         {/* Close Button */}
@@ -80,8 +83,8 @@ export default function Modal({
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '18px',
-            right: '18px',
+            top: '20px',
+            right: '20px',
             background: 'transparent',
             border: 'none',
             color: 'var(--muted)',
@@ -90,20 +93,20 @@ export default function Modal({
           }}
           className="hover:text-[var(--text)]"
         >
-          <X size={20} />
+          <X size={21} />
         </button>
 
         {/* Icon */}
         <div
           style={{
-            width: '46px',
-            height: '46px',
+            width: '50px',
+            height: '50px',
             background: 'rgba(192,57,43,0.12)',
-            borderRadius: '10px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '18px',
+            marginBottom: '22px',
             color: 'var(--primary)',
           }}
         >
@@ -114,10 +117,12 @@ export default function Modal({
         <h2
           style={{
             fontFamily: 'Segoe UI, sans-serif',
-            fontSize: '22px',
+            fontSize: '30px',
             fontWeight: 700,
             color: 'var(--text)',
-            marginBottom: '10px',
+            lineHeight: 1.2,
+            marginBottom: '14px',
+            letterSpacing: '-0.5px',
           }}
         >
           {title}
@@ -128,10 +133,11 @@ export default function Modal({
           <p
             style={{
               fontFamily: 'Segoe UI, sans-serif',
-              fontSize: '14px',
+              fontSize: '15px',
               color: 'var(--muted)',
-              lineHeight: 1.65,
-              marginBottom: bulletPoints ? '10px' : '24px',
+              lineHeight: 1.75,
+              marginBottom: bulletPoints ? '16px' : '28px',
+              maxWidth: '95%',
             }}
           >
             {description}
@@ -142,12 +148,12 @@ export default function Modal({
         {bulletPoints && bulletPoints.length > 0 && (
           <ul
             style={{
-              marginBottom: '24px',
-              paddingLeft: 0,
+              marginBottom: '30px',
+              paddingLeft: '2px',
               listStyle: 'none',
               display: 'flex',
               flexDirection: 'column',
-              gap: '6px',
+              gap: '10px',
             }}
           >
             {bulletPoints.map((pt) => (
@@ -158,26 +164,32 @@ export default function Modal({
                   fontSize: '14px',
                   color: 'var(--text)',
                   display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  lineHeight: 1.7,
                 }}
               >
                 <span
                   style={{
-                    width: '6px',
-                    height: '6px',
+                    width: '7px',
+                    height: '7px',
                     borderRadius: '50%',
-                    background: 'var(--primary)',
+                    background: '#c0392b',
                     flexShrink: 0,
+                    marginTop: '8px',
                   }}
                 />
-                {pt}
+
+                <span>{pt}</span>
               </li>
             ))}
           </ul>
         )}
 
-        {children}
+        {/* FORM */}
+        <div style={{ marginTop: '10px' }}>
+          {children}
+        </div>
       </div>
     </div>
   );

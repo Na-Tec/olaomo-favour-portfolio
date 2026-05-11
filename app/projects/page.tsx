@@ -15,7 +15,7 @@ export default function ProjectsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
+    <div className="min-h-screen bg-var(--bg) text-var(--text) transition-colors duration-300">
 
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-14">
 
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
                     ${
                       active
                         ? 'bg-[#c0392b] text-white border-transparent'
-                        : 'bg-transparent text-[var(--muted)] border-[var(--border)] hover:border-[#444] hover:text-[var(--text)]'
+                        : 'bg-transparent text-var(--muted) border-var(--border) hover:border-[#444] hover:text-var(--text)'
                     }
                   `}
                 >
@@ -61,25 +61,27 @@ export default function ProjectsPage() {
             <div
               key={project.id}
               className="
-                bg-[var(--card)]
-                border border-[var(--border)]
+                bg-var(--card)]
+                border border-var(--border)
                 rounded-xl
                 p-6
                 flex flex-col
                 gap-3
-                min-h-[200px]
+                min-h-200px]
                 transition-all duration-200
-                hover:border-[#444]
+                hover:border-[#e74c3c]
+                cursor: pointer
+                hover:border-var(--accent) hover:-translate-y-0.5
               "
             >
 
               {/* TITLE */}
-              <h3 className="text-[16px] font-semibold leading-snug text-[var(--text)]">
+              <h3 className="text-[16px] font-semibold leading-snug text-var(--text)]">
                 {project.title}
               </h3>
 
               {/* DESCRIPTION */}
-              <p className="text-sm text-[var(--muted)] leading-relaxed flex-1">
+              <p className="text-sm text-var(--muted) leading-relaxed flex-1">
                 {project.description}
               </p>
 
@@ -94,9 +96,9 @@ export default function ProjectsPage() {
                         text-[11px]
                         px-2.5 py-1
                         rounded-md
-                        border border-[var(--border)]
-                        bg-[var(--bg2)]
-                        text-[var(--muted)]
+                        border border-var(--border)
+                        bg-var(--bg2)
+                        text-var(--text)
                       "
                     >
                       {tag}
@@ -114,7 +116,7 @@ export default function ProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    text-[var(--muted)]
+                    text-var(--muted)
                     hover:text-[#c0392b]
                     transition-colors
                   "
