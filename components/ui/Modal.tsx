@@ -48,6 +48,7 @@ export default function Modal({
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose();
       }}
+      className="modal-overlay"
       style={{
         position: 'fixed',
         inset: 0,
@@ -63,6 +64,7 @@ export default function Modal({
     >
       {/* Modal Card */}
       <div
+        className="modal-card"
         style={{
           background: 'var(--card)',
           border: '1px solid var(--border)',
