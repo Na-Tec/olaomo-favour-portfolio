@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function AboutPage() {
   return (
@@ -16,7 +17,8 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-12 md:gap-[60px] items-start mt-5">
 
           {/* IMAGE */}
-          <div className="relative w-full max-w-[340px] h-[420px] rounded-[10px] overflow-hidden mx-auto md:mx-0">
+          <Reveal delayMs={80} variant="scale">
+            <div className="relative w-full max-w-[340px] h-[420px] rounded-[10px] overflow-hidden mx-auto md:mx-0">
 
             <Image
               src="/pic1.jpeg"
@@ -26,13 +28,15 @@ export default function AboutPage() {
               className="object-cover object-top"
             />
 
-          </div>
+            </div>
+          </Reveal>
 
           {/* CONTENT */}
           <div>
 
             {/* BIO */}
-            <div className="flex flex-col gap-[18px] mb-10">
+            <Reveal delayMs={140} variant="right">
+              <div className="flex flex-col gap-[18px] mb-10">
 
               <p className="text-[15px] leading-[1.85] text-[var(--muted)]">
                 I am Olaomo Favour, an innovative Computer Engineering student
@@ -55,7 +59,8 @@ export default function AboutPage() {
                 scientists, or competing in hackathons.
               </p>
 
-            </div>
+              </div>
+            </Reveal>
 
             {/* META GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-10">
@@ -65,9 +70,9 @@ export default function AboutPage() {
                 { label: 'EDUCATION', value: 'B.Eng. Computer Engineering' },
                 { label: 'FOCUS', value: 'NLP, Computer Vision, AI/ML' },
                 { label: 'CONTACT', value: 'olaomofavour@gmail.com' },
-              ].map(({ label, value }) => (
-
-                <div key={label}>
+              ].map(({ label, value }, index) => (
+                <Reveal key={label} delayMs={200 + index * 60} variant="up">
+                  <div>
 
                   <p className="text-[11px] font-semibold tracking-[1.5px] text-[#c0392b] uppercase mb-1">
                     {label}
@@ -77,8 +82,8 @@ export default function AboutPage() {
                     {value}
                   </p>
 
-                </div>
-
+                  </div>
+                </Reveal>
               ))}
 
             </div>
@@ -129,8 +134,8 @@ export default function AboutPage() {
                 desc: 'Studying core computing, AI, systems engineering, and applied data science.',
               },
             ].map(({ role, company, date, desc }, index, arr) => (
-
-              <div key={role} className="relative pl-8 pb-8 last:pb-0 group">
+              <Reveal key={role} delayMs={index * 70} variant="left">
+                <div className="relative pl-8 pb-8 last:pb-0 group">
 
                 {/* LINE */}
                 {index < arr.length - 1 && (
@@ -165,7 +170,8 @@ export default function AboutPage() {
 
                 </div>
 
-              </div>
+                </div>
+              </Reveal>
 
             ))}
 

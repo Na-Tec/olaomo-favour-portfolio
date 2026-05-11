@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 
 import Modal from '@/components/ui/Modal';
+import Reveal from '@/components/ui/Reveal';
 import {
   FormInput,
   FormTextarea,
@@ -85,7 +86,8 @@ export default function ContactPage() {
       <div className="max-w-6xl mx-auto px-8 py-24">
 
         {/* HEADER */}
-        <div style={{ textAlign: 'center', marginBottom: '52px' }}>
+        <Reveal delayMs={60} variant="blur">
+          <div style={{ textAlign: 'center', marginBottom: '52px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -123,7 +125,8 @@ export default function ContactPage() {
           <p style={{ fontSize: '14px', color: textMuted, maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
             I&apos;m particularly interested in opportunities involving healthcare data analysis, research collaboration, and projects with social impact.
           </p>
-        </div>
+          </div>
+        </Reveal>
 
         {/* CARDS */}
         <div
@@ -135,9 +138,9 @@ export default function ContactPage() {
           }}
           className="!grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4"
         >
-          {connectCards.map((card) => (
-            <div
-              key={card.id}
+          {connectCards.map((card, index) => (
+            <Reveal key={card.id} delayMs={120 + index * 70} variant="scale">
+              <div
               onClick={() => setActiveModal(card.id)}
               style={{
                 background: cardBg,
@@ -147,7 +150,7 @@ export default function ContactPage() {
                 cursor: 'pointer',
                 transition: '0.2s',
               }}
-              className="hover:!border-[var(--accent)] hover:!-translate-y-0.5"
+              className="hover-lift hover:!border-[var(--accent)]"
             >
               <div
                 style={{
@@ -172,7 +175,8 @@ export default function ContactPage() {
               <span style={{ fontSize: '13px', color: accent, fontWeight: 500 }}>
                 {card.link}
               </span>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
 

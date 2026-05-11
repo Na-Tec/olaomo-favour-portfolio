@@ -1,3 +1,5 @@
+import Reveal from '@/components/ui/Reveal';
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -5,7 +7,8 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
   return (
-    <div style={{ textAlign: 'center', marginBottom: '52px' }}>
+    <Reveal delayMs={60} variant="blur">
+      <div style={{ textAlign: 'center', marginBottom: '52px' }}>
       <h1
         style={{
           fontFamily: 'Segoe UI, sans-serif',
@@ -43,6 +46,7 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
           margin: '0 auto',
         }}
       />
-    </div>
+      </div>
+    </Reveal>
   );
 }

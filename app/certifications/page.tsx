@@ -1,5 +1,6 @@
 import { Award, ExternalLink } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 import { certifications } from '@/data/certifications';
 
 export default function CertificationsPage() {
@@ -16,25 +17,25 @@ export default function CertificationsPage() {
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[860px] mx-auto">
 
-          {certifications.map((cert) => (
-
-            <a
-              key={cert.id}
-              href={cert.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                flex gap-4 items-start
-                p-5
-                rounded-xl
-                bg-var(--card)
-                border border-var(--border)
-                transition-all duration-200
-                hover:border-[#e74c3c]
-                cursor: pointer
-                hover:border-var(--accent) hover:-translate-y-0.5
-              "
-            >
+          {certifications.map((cert, index) => (
+            <Reveal key={cert.id} delayMs={index * 60} variant="right">
+              <a
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  hover-lift
+                  flex gap-4 items-start
+                  p-5
+                  rounded-xl
+                  bg-[var(--card)]
+                  border border-[var(--border)]
+                  transition-all duration-200
+                  hover:border-[#e74c3c]
+                  cursor-pointer
+                  hover:border-[var(--accent)]
+                "
+              >
 
               {/* ICON */}
               <div className="mt-0.5 flex-shrink-0">
@@ -52,14 +53,9 @@ export default function CertificationsPage() {
                   </h3>
 
                   {cert.url && (
-                    <a
-                      href={cert.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--muted)] hover:text-[#c0392b] transition-colors"
-                    >
+                    <span className="text-[var(--muted)] group-hover:text-[#c0392b] transition-colors">
                       <ExternalLink size={14} />
-                    </a>
+                    </span>
                   )}
 
                 </div>
@@ -76,9 +72,9 @@ export default function CertificationsPage() {
                     text-[11px]
                     px-2.5 py-1
                     rounded-md
-                    border border-var(--border)
-                    bg-var(--bg2)]
-                    text-var(--text)
+                    border border-[var(--border)]
+                    bg-[var(--bg2)]
+                    text-[var(--text)]
                   "
                 >
                   {cert.date}
@@ -86,7 +82,8 @@ export default function CertificationsPage() {
 
               </div>
 
-            </a>
+              </a>
+            </Reveal>
 
           ))}
 
