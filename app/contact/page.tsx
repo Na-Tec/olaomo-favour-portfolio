@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import {
@@ -73,6 +73,42 @@ const accent = 'var(--accent)';
 
 export default function ContactPage() {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const closeModal = () => {
+    setActiveModal(null);
+    setStatus(null);
+  };
+
+  const submitToTelegram = async (type: Exclude<ModalType, null>, form: HTMLFormElement) => {
+    setSubmitting(true);
+    setStatus(null);
+
+    try {
+      const data = new FormData(form);
+      const payload = Object.fromEntries(data.entries());
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ type, ...payload }),
+      });
+
+      const json = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || 'Failed to send message');
+      }
+
+      setStatus({ type: 'success', message: "Sent. I'll get back to you shortly." });
+      form.reset();
+    } catch (e) {
+      const message = e instanceof Error ? e.message : 'Something went wrong';
+      setStatus({ type: 'error', message });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div
@@ -303,7 +339,7 @@ export default function ContactPage() {
               </a>
             </div>
 
-            {/* ✅ RESTORED LINKEDIN BUTTON */}
+            {/* RESTORED LINKEDIN BUTTON */}
             <div
               style={{
                 background: cardBg,
@@ -343,11 +379,11 @@ export default function ContactPage() {
         </div>
       </div>
 
-{/* ── MODALS ── */}
+      {/* MODALS */}
 
       <Modal
         isOpen={activeModal === 'role'}
-        onClose={() => setActiveModal(null)}
+        onClose={closeModal}
         title="Interested in having me on your team?"
         description="I'm actively exploring roles in these areas, but I'm open to conversations about any opportunity where I can add value with data and AI:"
         icon={<Briefcase size={22} />}
@@ -357,22 +393,32 @@ export default function ContactPage() {
           'Tech Community & Education: Developer Advocate, Community Lead, Technical Educator/Writer',
         ]}
       >
-        <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Your Name" />
-          <FormInput placeholder="Company / Organization" />
-          <FormInput placeholder='Role Title (or "Exploring fit")' />
-          <FormInput placeholder="Email Address" type="email" />
-          <FormTextarea placeholder="Brief description of the role or opportunity" />
-          <SubmitButton>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitToTelegram('role', e.currentTarget);
+          }}
+        >
+          <FormInput name="name" placeholder="Your Name" />
+          <FormInput name="company" placeholder="Company / Organization" />
+          <FormInput name="roleTitle" placeholder='Role Title (or "Exploring fit")' />
+          <FormInput name="email" placeholder="Email Address" type="email" />
+          <FormTextarea name="message" placeholder="Brief description of the role or opportunity" />
+          <SubmitButton disabled={submitting}>
             <Send size={15} />
-            Send Details
+            {submitting ? 'Sending…' : 'Send Details'}
           </SubmitButton>
         </form>
+        {status && (
+          <p className={`mt-3 text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+            {status.message}
+          </p>
+        )}
       </Modal>
 
       <Modal
         isOpen={activeModal === 'speak'}
-        onClose={() => setActiveModal(null)}
+        onClose={closeModal}
         title="Invite Me to Speak"
         description="I enjoy speaking on topics around AI, healthcare, community growth, and building a career in tech."
         icon={<Mic2 size={22} />}
@@ -383,15 +429,20 @@ export default function ContactPage() {
           'AI for Social Good',
         ]}
       >
-        <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Your Name" />
-          <FormInput placeholder="Organization / Event Name" />
-          <FormInput placeholder="Email Address" type="email" />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitToTelegram('speak', e.currentTarget);
+          }}
+        >
+          <FormInput name="name" placeholder="Your Name" />
+          <FormInput name="company" placeholder="Organization / Event Name" />
+          <FormInput name="email" placeholder="Email Address" type="email" />
 
           <div className="mb-3">
             <label className="block text-sm text-muted-foreground mb-2">Event Date &amp; Time</label>
             <FormSelect
-              name="date"
+              name="eventDateSet"
               options={[
                 { value: '', label: 'Have you set a date?' },
                 { value: 'yes', label: 'Yes, I have a date' },
@@ -426,17 +477,22 @@ export default function ContactPage() {
             />
           </div>
 
-          <FormTextarea placeholder="Topic or theme in mind" />
-          <SubmitButton>
+          <FormTextarea name="message" placeholder="Topic or theme in mind" />
+          <SubmitButton disabled={submitting}>
             <Send size={15} />
-            Send Speaking Invitation
+            {submitting ? 'Sending…' : 'Send Speaking Invitation'}
           </SubmitButton>
         </form>
+        {status && (
+          <p className={`mt-3 text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+            {status.message}
+          </p>
+        )}
       </Modal>
 
       <Modal
         isOpen={activeModal === 'collaborate'}
-        onClose={() => setActiveModal(null)}
+        onClose={closeModal}
         title="Let's Build Something"
         description="I'm especially interested in Healthcare AI, Data for Good, research, and community-focused technology projects."
         icon={<Users size={22} />}
@@ -447,34 +503,54 @@ export default function ContactPage() {
           'Open-source contributions',
         ]}
       >
-        <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Your Name" />
-          <FormInput placeholder="Project Name / Idea" />
-          <FormInput placeholder="Email Address" type="email" />
-          <FormTextarea placeholder="Tell me about your idea or project..." />
-          <SubmitButton>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitToTelegram('collaborate', e.currentTarget);
+          }}
+        >
+          <FormInput name="name" placeholder="Your Name" />
+          <FormInput name="projectName" placeholder="Project Name / Idea" />
+          <FormInput name="email" placeholder="Email Address" type="email" />
+          <FormTextarea name="message" placeholder="Tell me about your idea or project..." />
+          <SubmitButton disabled={submitting}>
             <Send size={15} />
-            Send Collaboration Idea
+            {submitting ? 'Sending…' : 'Send Collaboration Idea'}
           </SubmitButton>
         </form>
+        {status && (
+          <p className={`mt-3 text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+            {status.message}
+          </p>
+        )}
       </Modal>
 
       <Modal
         isOpen={activeModal === 'hello'}
-        onClose={() => setActiveModal(null)}
+        onClose={closeModal}
         title="Just Say Hello"
         description="No pressure, no agenda — happy to connect, chat about tech, or simply say hi."
         icon={<MessageCircle size={22} />}
       >
-        <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput placeholder="Your Name" />
-          <FormInput placeholder="Email Address" type="email" />
-          <FormTextarea placeholder="What's on your mind?" />
-          <SubmitButton>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitToTelegram('hello', e.currentTarget);
+          }}
+        >
+          <FormInput name="name" placeholder="Your Name" />
+          <FormInput name="email" placeholder="Email Address" type="email" />
+          <FormTextarea name="message" placeholder="What's on your mind?" />
+          <SubmitButton disabled={submitting}>
             <Send size={15} />
-            Say Hello
+            {submitting ? 'Sending…' : 'Send Message'}
           </SubmitButton>
         </form>
+        {status && (
+          <p className={`mt-3 text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+            {status.message}
+          </p>
+        )}
       </Modal>
     </div>
   );

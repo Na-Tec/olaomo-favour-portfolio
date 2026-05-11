@@ -136,12 +136,15 @@ export function FormSelect({
 
 export function SubmitButton({
   children,
+  disabled,
 }: {
   children: React.ReactNode;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="submit"
+      disabled={disabled}
       style={{
         width: '100%',
         background: '#c0392b',
@@ -152,7 +155,8 @@ export function SubmitButton({
         fontSize: '14px',
         fontWeight: 700,
         fontFamily: 'Segoe UI, sans-serif',
-        cursor: 'pointer',
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.7 : 1,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -160,7 +164,7 @@ export function SubmitButton({
         marginTop: '10px',
         transition: 'all 0.2s ease',
       }}
-      className="hover:opacity-90"
+      className={disabled ? '' : 'hover:opacity-90'}
     >
       {children}
     </button>
