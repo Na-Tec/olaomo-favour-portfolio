@@ -19,12 +19,15 @@ export default function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
+  const onceRef = useRef(once);
+
+  useEffect(() => {
+    onceRef.current = once;
+  }, [once]);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    if (visible) return;
 
     const prefersReducedMotion =
       typeof window !== 'undefined' &&
@@ -35,16 +38,16 @@ export default function Reveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry) return;
-        if (entry.isIntersecting) setVisible(true);
-        else if (!once) setVisible(false);
-        if (entry.isIntersecting && once) observer.disconnect();
+        const shouldShow = entry.isIntersecting;
+        setVisible((prev) => (prev === shouldShow ? prev : shouldShow));
+        if (shouldShow && onceRef.current) observer.disconnect();
       },
       { threshold: 0.12, rootMargin: '80px 0px' }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [once, visible]);
+  }, []);
 
   return (
     <div
