@@ -12,6 +12,7 @@ export const certifications: Certification[] = [
     title: 'NLP Student — DeepTech_Ready (3MTT Program)',
     organization: 'DeepTech_Ready',
     date: 'May — December 2025',
+     url: 'https://deeplearningindaba.com',
   },
   {
     id: 'deep-learning-indaba',

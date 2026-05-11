@@ -18,8 +18,11 @@ export default function CertificationsPage() {
 
           {certifications.map((cert) => (
 
-            <div
+            <a
               key={cert.id}
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 flex gap-4 items-start
                 p-5
@@ -74,7 +77,7 @@ export default function CertificationsPage() {
                     px-2.5 py-1
                     rounded-md
                     border border-var(--border)
-                    bg-var(--bg2)
+                    bg-var(--bg2)]
                     text-var(--text)
                   "
                 >
@@ -83,7 +86,7 @@ export default function CertificationsPage() {
 
               </div>
 
-            </div>
+            </a>
 
           ))}
 

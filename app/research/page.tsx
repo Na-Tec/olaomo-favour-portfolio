@@ -18,8 +18,11 @@ export default function ResearchPage() {
 
           {publications.map((pub) => (
 
-            <div
+            <a
               key={pub.id}
+              href={pub.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 flex gap-4 items-start
                 p-6
@@ -81,7 +84,7 @@ export default function ResearchPage() {
 
               </div>
 
-            </div>
+            </a>
 
           ))}
 

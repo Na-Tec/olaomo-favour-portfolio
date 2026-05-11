@@ -16,7 +16,7 @@ export const projects: Project[] = [
       'End-to-end custom voice cloning Text-to-Speech project with dataset preparation, LoRA fine-tuning, and Hugging Face dataset integration.',
     tags: ['Jupyter Notebook', 'Python', 'Deep Learning'],
     category: 'featured',
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/Na-Tec/olaomo-favour-portfolio',
   },
   {
     id: 'healthpaddie',
