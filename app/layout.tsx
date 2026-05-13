@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import { DM_Sans, JetBrains_Mono, Syne } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -33,6 +34,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
         className={`${dmSans.className} ${syne.variable} ${dmSans.variable} ${jetBrainsMono.variable}`}
       >
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function () {
+              try {
+                var saved = localStorage.getItem('theme');
+                var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
+                document.documentElement.classList.remove('light', 'dark');
+                document.documentElement.classList.add(theme);
+              } catch (e) {}
+            })();`,
+          }}
+        />
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

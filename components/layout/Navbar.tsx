@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -17,11 +17,17 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const initialTheme = useMemo<'dark' | 'light'>(() => {
+    if (typeof document === 'undefined') return 'dark';
+    return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+  }, []);
+  const [theme, setTheme] = useState<'dark' | 'light'>(initialTheme);
 
-  // Apply theme to document
   useEffect(() => {
-    document.documentElement.className = theme;
+    const root = document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    window.localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -62,11 +68,12 @@ export default function Navbar() {
           className="theme-btn"
           onClick={toggleTheme}
         >
-          {theme === 'dark' ? (
+          <span className="theme-icon theme-icon--sun" aria-hidden="true">
             <Sun size={18} />
-          ) : (
+          </span>
+          <span className="theme-icon theme-icon--moon" aria-hidden="true">
             <Moon size={18} />
-          )}
+          </span>
         </button>
         
       </div>
@@ -87,11 +94,12 @@ export default function Navbar() {
             className="mobile-theme-btn"
             onClick={toggleTheme}
           >
-            {theme === 'dark' ? (
+            <span className="theme-icon theme-icon--sun" aria-hidden="true">
               <Sun size={18} />
-            ) : (
+            </span>
+            <span className="theme-icon theme-icon--moon" aria-hidden="true">
               <Moon size={18} />
-            )}
+            </span>
           </button>
 
           {/* HAMBURGER */}

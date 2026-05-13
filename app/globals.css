@@ -16,11 +16,14 @@
 /* LIGHT MODE */
 .light {
   --bg: #ffffff;
+  --bg2: #fafafa;
   --text: #111111;
   --muted: #555555;
+  --dim: #777777;
   --card: #f5f5f5;
   --border: #e5e5e5;
   --accent: #c0392b;
+  --accent2: #e74c3c;
 }
 
 
@@ -420,6 +423,23 @@ body {
 
 .theme-btn:hover {
   color: var(--text);
+}
+
+.theme-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-icon--sun {
+  display: none;
+}
+
+.dark .theme-icon--sun {
+  display: inline-flex;
+}
+
+.dark .theme-icon--moon {
+  display: none;
 }
 
 /* ========================================
