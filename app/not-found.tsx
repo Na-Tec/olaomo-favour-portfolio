@@ -1,11 +1,11 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
 
 export default function NotFound() {
   return (
     <div
       style={{
-        background: '#0d0d0d',
+        background: 'var(--bg)',
         minHeight: '80vh',
         display: 'flex',
         flexDirection: 'column',
@@ -36,7 +36,7 @@ export default function NotFound() {
             fontFamily: 'Syne, sans-serif',
             fontSize: 'clamp(36px, 6vw, 60px)',
             fontWeight: 800,
-            color: '#e8e8e8',
+            color: 'var(--text)',
             marginBottom: '16px',
             letterSpacing: '-1px',
           }}
@@ -50,7 +50,7 @@ export default function NotFound() {
           style={{
             fontFamily: 'DM Sans, sans-serif',
             fontSize: '16px',
-            color: '#888',
+            color: 'var(--muted)',
             marginBottom: '40px',
             maxWidth: '400px',
             lineHeight: 1.7,
@@ -69,7 +69,7 @@ export default function NotFound() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: '#c0392b',
+            background: 'var(--accent)',
             color: '#fff',
             borderRadius: '8px',
             padding: '13px 28px',
@@ -79,7 +79,7 @@ export default function NotFound() {
             textDecoration: 'none',
           }}
         >
-          ← Back to Home
+          Back to Home
         </Link>
       </Reveal>
     </div>

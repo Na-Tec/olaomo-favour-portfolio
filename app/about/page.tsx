@@ -135,7 +135,7 @@ export default function AboutPage() {
               },
             ].map(({ role, company, date, desc }, index, arr) => (
               <Reveal key={role} delayMs={index * 70} variant="left">
-                <div className="relative pl-8 pb-8 last:pb-0 group">
+                <div className="relative pl-8 pb-12 last:pb-6 group">
 
                 {/* LINE */}
                 {index < arr.length - 1 && (
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 <div className="absolute left-0 top-2 h-4 w-4 rounded-full bg-[#c0392b] ring-4 ring-[var(--bg)] transition-all duration-300 group-hover:ring-[#c0392b]" />
 
                 {/* CARD */}
-                <div className="rounded-xl bg-[var(--card)] p-5 border border-[var(--border)]/50 transition-all duration-300 group-hover:border-[#c0392b]">
+                <div className="rounded-xl bg-[var(--card)] p-6 border border-[var(--border)]/50 transition-all duration-300 group-hover:border-[#c0392b]">
 
                   <div className="mb-1 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
 
