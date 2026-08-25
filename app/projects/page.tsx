@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { GitFork } from 'lucide-react';
+import { GitBranch, BookOpen } from 'lucide-react';
+import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
 import { projects } from '@/data/projects';
@@ -17,7 +18,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
-
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-14">
 
         <SectionHeader
@@ -52,66 +52,95 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((project, index) => (
             <Reveal key={project.id} delayMs={(index % 9) * 55} variant="scale">
-              <a
-                href={project.githubUrl || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
+              <div
                 className="
                   hover-lift
                   bg-[var(--card)]
                   border border-[var(--border)]
                   rounded-xl
-                  p-6
+                  overflow-hidden
                   flex flex-col
-                  gap-3
                   min-h-[200px]
                   transition-all duration-200
                   hover:border-[#e74c3c]
-                  cursor-pointer
                 "
               >
-              {/* TITLE */}
-              <h3 className="text-[16px] font-semibold leading-snug text-[var(--text)]">
-                {project.title}
-              </h3>
+                {/* IMAGE */}
+                {project.image && (
+                  <div className="relative w-full h-40 bg-[var(--bg2)]">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
 
-              {/* DESCRIPTION */}
-              <p className="text-sm text-[var(--muted)] leading-relaxed flex-1">
-                {project.description}
-              </p>
+                <div className="p-6 flex flex-col gap-3 flex-1">
+                  {/* TITLE */}
+                  <h3 className="text-[16px] font-semibold leading-snug text-[var(--text)]">
+                    {project.title}
+                  </h3>
 
-              {/* TAGS */}
-              {project.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="
-                        text-[11px]
-                        px-2.5 py-1
-                        rounded-md
-                        border border-[var(--border)]
-                        bg-[var(--bg2)]
-                        text-[var(--text)]
-                      "
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {/* DESCRIPTION */}
+                  <p className="text-sm text-[var(--muted)] leading-relaxed flex-1">
+                    {project.description}
+                  </p>
+
+                  {/* TAGS */}
+                  {project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="
+                            text-[11px]
+                            px-2.5 py-1
+                            rounded-md
+                            border border-[var(--border)]
+                            bg-[var(--bg2)]
+                            text-[var(--text)]
+                          "
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* ACTIONS */}
+                  <div className="flex items-center gap-4 mt-2 pt-3 border-t border-[var(--border)]">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm text-[var(--muted)] hover:text-[#c0392b] transition-colors"
+                      >
+                        <GitBranch size={16} />
+                        GitHub
+                      </a>
+                    )}
+                    {project.mediumUrl && (
+                      <a
+                        href={project.mediumUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm text-[var(--muted)] hover:text-[#c0392b] transition-colors"
+                      >
+                        <BookOpen size={16} />
+                        Medium
+                      </a>
+                    )}
+                  </div>
                 </div>
-              )}
-
-              {/* GITHUB ICON */}
-              <div className="mt-2 text-[var(--muted)] hover:text-[#c0392b] transition-colors">
-                <GitFork size={18} />
               </div>
-              </a>
             </Reveal>
           ))}
         </div>
 
       </div>
-
     </div>
   );
 }
