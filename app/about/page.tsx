@@ -88,6 +88,36 @@ export default function AboutPage() {
 
             </div>
 
+                        {/* SKILLS */}
+            <Reveal delayMs={380} variant="up">
+              <div className="mt-10">
+
+                <p className="text-[11px] font-semibold tracking-[1.5px] text-[#c0392b] uppercase mb-3">
+                  SKILLS
+                </p>
+
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    'Python',
+                    'SQL',
+                    'PySpark',
+                    'Power BI',
+                    'Azure',
+                    'Microsoft Fabric',
+                    'n8n',
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-2 rounded-full text-[13px] font-mono text-[var(--text)] bg-[var(--card)] border border-[var(--border)] transition-all duration-300 hover:border-[#c0392b] hover:text-[#c0392b]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+              </div>
+            </Reveal>
+
           </div>
 
         </div>
