@@ -11,7 +11,7 @@ export default function ResearchPage() {
 
         <SectionHeader
           title="Research & Publications"
-          subtitle="Peer-reviewed publications in top-tier AI/ML venues."
+          subtitle="Peer-reviewed publications in top-tier Cloud, Data & Analytics venues."
         />
 
         {/* PUBLICATIONS LIST */}

@@ -57,10 +57,10 @@ const connectCards = [
 ];
 
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'Medium', href: 'https://medium.com' },
-  { label: 'X (Twitter)', href: 'https://twitter.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/favour-fiyinfoluwa-olaomo/' },
+  { label: 'GitHub', href: 'https://github.com/olaomofavour' },
+  { label: 'Medium', href: 'https://medium.com/@olaomofavour' },
+  { label: 'X (Twitter)', href: 'https://x.com/FavourOlaomo' },
   { label: 'Peerlist', href: 'https://peerlist.io' },
   { label: 'Selar', href: 'https://selar.co' },
 ];
@@ -357,7 +357,7 @@ export default function ContactPage() {
               </p>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/favour-fiyinfoluwa-olaomo/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

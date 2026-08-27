@@ -7,7 +7,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
 import { projects } from '@/data/projects';
 
-type Filter = 'all' | 'featured' | 'data analysis' | 'cloud';
+type Filter = 'all' | 'featured' | 'Data analysis' | 'Cloud Engineering' | ' AI Automation' | 'Data Engineering';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<Filter>('all');
@@ -22,12 +22,12 @@ export default function ProjectsPage() {
 
         <SectionHeader
           title="Projects"
-          subtitle="A selection of my strongest AI, data science, and machine learning projects."
+          subtitle="A selection of my strongest Cloud, Data & Analytics projects."
         />
 
         {/* FILTERS */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {(['all', 'featured', 'data analysis', 'cloud'] as Filter[]).map((tab) => {
+          {(['all', 'featured', 'Data analysis', 'Cloud Engineering', 'AI Automation', 'Data Engineering'] as Filter[]).map((tab) => {
             const active = filter === tab;
             return (
               <button

@@ -30,14 +30,14 @@ export default function HomePage() {
                 <div className="pulse-soft inline-flex items-center gap-[7px] rounded-full border border-[rgba(192,57,43,0.28)] bg-[rgba(192,57,43,0.12)] px-[14px] py-[5px]">
                   <Sparkles size={12} color="#e8a09a" />
                   <span className="text-[13px] text-[#e8a09a] font-medium tracking-wide">
-                    DATA ENGINEER
+                    ANALYTICS ENGINEER
                   </span>
                 </div>
 
                 <div className="inline-flex items-center gap-[7px] rounded-full border border-[rgba(192,57,43,0.28)] bg-[rgba(192,57,43,0.12)] px-[14px] py-[5px]">
                   <Sparkles size={12} color="#e8a09a" />
                   <span className="text-[13px] text-[#e8a09a] font-medium tracking-wide">
-                    DATA ENGINEER
+                    AI AUTOMATION ENGINEER
                   </span>
                 </div>
 
@@ -56,10 +56,9 @@ export default function HomePage() {
               {/* BIO */}
               <Reveal delayMs={180} variant="up">
                 <p className="text-[16px] leading-[1.8] text-[var(--muted)] mb-10">
-                  An innovative Computer Engineering student with expertise
-                  in Data Science, Machine Learning, NLP and AI Development.
-                  Passionate about leveraging technology to drive innovation
-                  and deliver impactful solutions.
+                  A Computer Science professional specializing in Data Analytics, Analytics Engineering, 
+                  and Workflow Automation. I bridge the gap between raw data and business decisions by 
+                  building robust data models, actionable BI dashboards, and automated pipelines that drive operational efficiency.
                 </p>
               </Reveal>
 
@@ -76,7 +75,7 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="/cv.pdf"
+                  href="https://hello.cv/olaomofavour"
                   className="hover-lift inline-flex items-center gap-2 rounded-[8px] border border-[var(--border)] hover:border-[#666] transition-colors px-[26px] py-[13px] text-[14px] font-medium text-[var(--text)]"
                 >
                   <Download size={14} />

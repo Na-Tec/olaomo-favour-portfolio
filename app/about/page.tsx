@@ -10,7 +10,7 @@ export default function AboutPage() {
 
         <SectionHeader
           title="About Me"
-          subtitle="A passionate AI/ML Engineer dedicated to advancing AI research and building impactful solutions."
+          subtitle="A passionate Data & Analytics Engineer dedicated to building scalable data systems, cloud architectures, and automated business intelligence solutions that drive real-world impact."
         />
 
         {/* MAIN GRID */}
@@ -39,24 +39,19 @@ export default function AboutPage() {
               <div className="flex flex-col gap-[18px] mb-10">
 
               <p className="text-[15px] leading-[1.85] text-[var(--muted)]">
-                I am Olaomo Favour, an innovative Computer Engineering student
-                at the Federal University of Technology Akure with expertise in
-                Data Science, Machine Learning, Natural Language Processing,
-                and Artificial Intelligence Development.
+                I am Olaomo Favour, a Computer Science graduate from Anchor University passionate about turning raw data into strategic business leverage.
               </p>
 
               <p className="text-[15px] leading-[1.85] text-[var(--muted)]">
-                I&apos;m skilled in Python programming, with a proven ability to
-                develop efficient algorithms, design robust applications, and
-                analyze complex datasets. I have strong collaborative and
-                problem-solving skills, committed to leveraging technology to
-                drive innovation and deliver impactful solutions.
+                My core technical stack centers on Power BI, SQL, Python, Excel, Azure, and Microsoft Fabric. 
+                With a solid foundation in data analytics and pipeline automation, I specialize in building reliable 
+                data models, optimizing analytical queries, and creating intuitive visualizations that empower teams to make fast, 
+                data-driven decisions.
               </p>
 
               <p className="text-[15px] leading-[1.85] text-[var(--muted)]">
-                When I&apos;m not training models or writing code, you&apos;ll
-                find me leading my DSN FUTA chapter, mentoring aspiring data
-                scientists, or competing in hackathons.
+                Beyond the IDE and cloud consoles, I enjoy sharing data knowledge through community mentoring, 
+                keeping up with emerging tech trends, and finding creative ways to automate everyday tasks.
               </p>
 
               </div>
@@ -66,9 +61,9 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-10">
 
               {[
-                { label: 'LOCATION', value: 'Akure, Ondo State, Nigeria' },
-                { label: 'EDUCATION', value: 'B.Eng. Computer Engineering' },
-                { label: 'FOCUS', value: 'NLP, Computer Vision, AI/ML' },
+                { label: 'LOCATION', value: 'Ogba, Lagos State, Nigeria' },
+                { label: 'EDUCATION', value: 'B.Sc. Computer Science, Anchor University' },
+                { label: 'FOCUS', value: 'Data Analytics, Data Engineering, Automation' },
                 { label: 'CONTACT', value: 'olaomofavour@gmail.com' },
               ].map(({ label, value }, index) => (
                 <Reveal key={label} delayMs={200 + index * 60} variant="up">
@@ -98,13 +93,14 @@ export default function AboutPage() {
 
                 <div className="flex flex-wrap gap-3">
                   {[
+                    'Excel',
                     'Python',
                     'SQL',
                     'PySpark',
                     'Power BI',
                     'Azure',
                     'Microsoft Fabric',
-                    'n8n',
+                    'N8N',
                   ].map((skill) => (
                     <span
                       key={skill}
@@ -134,34 +130,22 @@ export default function AboutPage() {
 
             {[
               {
-                role: 'AI Intern',
-                company: 'Babelos Ltd (Remote)',
-                date: 'February 2026 — Present',
-                desc: 'Built AI prototypes and evaluation pipelines for internal product demos, including Moniger. Worked on ML evaluation, error analysis, and API-ready AI systems.',
+                role: 'Data Analytics/ Engineer',
+                company: 'BEMSOFT GROUP',
+                date: 'Apr 2025— Jun 2026',
+                desc: 'Led data analytics and engineering initiatives and managed terminal department operations, optimizing data pipelines and driving revenue growth through advanced analytics and strategic leadership.',
               },
               {
-                role: 'AI Engineering Intern',
-                company: 'Rectlabs',
-                date: 'July — December 2025',
-                desc: 'Worked on Computer Vision, Reinforcement Learning, NLP, and developed a voice-cloning TTS model.',
+                role: 'Data Analytics Tutor',
+                company: 'GIIT Africa',
+                date: 'Feb 2023 — Nov 2023',
+                desc: 'Designed and delivered comprehensive data analysis training modules, mentoring aspiring professionals in advanced Excel and data reporting techniques.',
               },
               {
-                role: 'Data Science Intern',
-                company: 'NIGCOMSAT',
-                date: 'October — November 2024',
-                desc: 'Analyzed satellite telemetry datasets using Python and SQL for system optimization.',
-              },
-              {
-                role: 'AI/ML Research Intern',
-                company: 'Smart Systems Research Lab',
-                date: '2022 — Present',
-                desc: 'Worked on ML models for health and EdTech systems including RAG pipelines.',
-              },
-              {
-                role: 'B.Eng. Computer Engineering',
-                company: 'FUTA',
-                date: '2021 — Present',
-                desc: 'Studying core computing, AI, systems engineering, and applied data science.',
+                role: 'B.Sc. Computer Science',
+                company: 'Anchor University',
+                date: '2019 — 2024',
+                desc: 'Studying core computing, AI, systems engineering, and applied data science and analytics.',
               },
             ].map(({ role, company, date, desc }, index, arr) => (
               <Reveal key={role} delayMs={index * 70} variant="left">

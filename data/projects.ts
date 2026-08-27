@@ -12,15 +12,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'tts-voice-cloning',
-    title: 'TTS Voice Cloning',
+    id: 'Cloud Engineering',
+    title: 'Product-Demand-Inventory-Analytics-Dashboard',
     description:
-      'End-to-end custom voice cloning Text-to-Speech project with dataset preparation, LoRA fine-tuning, and Hugging Face dataset integration.',
-    tags: ['Jupyter Notebook', 'Python', 'Deep Learning'],
+      'An interactive, multi-view Power BI analytics report designed to evaluate product demand, inventory value, and warehouse performance. The project focuses on delivering dynamic user interactivity, comparative KPI tracking, and advanced visual filtering architecture.',
+    tags: ['Jupyter Notebook', 'Python', 'Power BI', 'Data Analytics','Excel'],
     category: 'featured',
-    image: '/projects/tts-voice-cloning.png',
-    githubUrl: 'https://github.com/Na-Tec/olaomo-favour-portfolio',
-    mediumUrl: 'https://medium.com/...',
+    image: '/projects/Dashboard_Display.png',
+    githubUrl: 'https://github.com/olaomofavour/Product-Demand-Inventory-Analytics-Dashboard',
+    mediumUrl: 'https://medium.com/@olaomofavour/product-demand-inventory-analytics-27497883edc3',
   },
   {
     id: 'healthpaddie',
